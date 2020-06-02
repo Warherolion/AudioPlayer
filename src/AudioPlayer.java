@@ -1,3 +1,5 @@
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 
 public class AudioPlayer {
@@ -10,13 +12,17 @@ public class AudioPlayer {
 
     //Backend array
     public static String[] pathnames;
+    //FrontEnd array
+    public static String[] AudioLibrary;
 
-
-    public static void ListInit(File AudioDir){
+    public void ListInit(File AudioDir){
         // User must invoke this inorder to initialize the rest of the class
         pathnames = AudioDir.list();
-
-
+        AudioLibrary = AudioDir.list();
+        //creates front end array
+        for (int ALP  = 0; ALP < AudioLibrary.length; ALP++){
+            AudioLibrary[ALP] = FilenameUtils.removeExtension(AudioLibrary[ALP]);
+        }
     }
     public static void ListSongs() {
 
