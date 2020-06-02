@@ -7,21 +7,14 @@ import org.apache.commons.io.FilenameUtils;
 public class Main {
     public static void main(String[] args) {
         AudioPlayer AudioPlayer = new AudioPlayer();
-        Scanner input = new Scanner(System.in);
-
-
 
         //String[] x = AudioPlayer.listInit(filedir);   <- used to provide a file array for the rest of the class
         File MusicDir = new File("/Users/ranvi/Desktop/Grade 12 School Work/CompSci/CompSci_MusicStreamingApp/src/Music");
 
-        String[] AudioList = AudioPlayer.ListInit(MusicDir);
+        AudioPlayer.ListInit(MusicDir);
 
 
         //AudioPlayer.playLead();
-
-
-        input.nextInt();
-
 
     }
 }

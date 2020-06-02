@@ -10,18 +10,33 @@ public class AudioPlayer {
 
    */
 
+    /*  TODO
+    *   https://dzone.com/articles/how-retrieveextract-metadata <- use this to extract meta data of file
+    *
+    *
+    *
+    *
+    * */
+
     //Backend array
     public static String[] pathnames;
     //FrontEnd array
     public static String[] AudioLibrary;
 
     public void ListInit(File AudioDir){
+
         // User must invoke this inorder to initialize the rest of the class
         pathnames = AudioDir.list();
+        //The two arrays are one for pathname and two for the user to see all the songs
         AudioLibrary = AudioDir.list();
-        //creates front end array
-        assert AudioLibrary != null;
 
+
+        //creates the audioLibrary for the user without the file extensions at the end
+
+        //Makes sure the array is not empty
+        assert AudioLibrary != null : " File folder is empty ";
+
+        //Removes the file extension for each index in the array
         for (int ALP = 0; ALP < AudioLibrary.length; ALP++){
             AudioLibrary[ALP] = FilenameUtils.removeExtension(AudioLibrary[ALP]);
         }
@@ -38,7 +53,7 @@ public class AudioPlayer {
     public static void AudioGrab() {
 
     }
-    public static void SinglePLayClip() {
+    public static void SinglePLayClip(String Filename, boolean Looped) {
 
     }
     public static void ListPop() {

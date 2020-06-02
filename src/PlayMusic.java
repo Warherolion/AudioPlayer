@@ -1,9 +1,32 @@
+import java.util.Scanner;
 public class PlayMusic extends AudioPlayer{
-    public static void PlayMenu(){
+    //global var used to see if music is playing
+    public static boolean MusicEnded = false;
 
+
+
+
+    public static void PlayMenu(int UserChoice){
+        Scanner input = new Scanner(System.in);
+        while (!MusicEnded) {
+            System.out.println("Please pick one option");
+            System.out.println("1. Play Song");
+            System.out.println("2. Pause/Play");
+            System.out.println("3. Skip");
+            System.out.println("4. Shuffle");
+            System.out.println("5. Loop");
+            System.out.println("6. Add this song to playlist");
+            System.out.println("7. List song info");
+            System.out.println("8. Close Player");
+            try {
+                UserChoice = input.nextInt();
+                PlayMenu(UserChoice);
+                if (UserChoice == 4) break;
+            } catch (Exception ex) {
+                System.out.println("There was an unexpected error, please try again");
+            }
+        }
     }
-
-
 
     public static void singlePlay(){
 
