@@ -20,7 +20,9 @@ public class AudioPlayer {
         pathnames = AudioDir.list();
         AudioLibrary = AudioDir.list();
         //creates front end array
-        for (int ALP  = 0; ALP < AudioLibrary.length; ALP++){
+        assert AudioLibrary != null;
+
+        for (int ALP = 0; ALP < AudioLibrary.length; ALP++){
             AudioLibrary[ALP] = FilenameUtils.removeExtension(AudioLibrary[ALP]);
         }
     }
