@@ -12,10 +12,12 @@ public class AudioPlayer {
 
     /*  TODO
     *   https://dzone.com/articles/how-retrieveextract-metadata <- use this to extract meta data of file
+    *   Make a quarry search
+    *   make a class of songs with info for each song
+    *   nested classes
+    *   Create an object of all the songs
     *
-    *
-    *
-    *
+    *   String[] songs = {songs songs = new songs(), }
     * */
 
     //Backend array
@@ -24,7 +26,6 @@ public class AudioPlayer {
     public static String[] AudioLibrary;
 
     public void ListInit(File AudioDir){
-
         // User must invoke this inorder to initialize the rest of the class
         pathnames = AudioDir.list();
         //The two arrays are one for pathname and two for the user to see all the songs
