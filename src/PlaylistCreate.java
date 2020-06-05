@@ -1,2 +1,2 @@
-public class PlaylistCreate extends AudioPlayer{
+public class PlaylistCreate {
 }

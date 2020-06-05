@@ -1,6 +1,4 @@
-import org.apache.commons.io.FilenameUtils;
-
-import java.io.File;
+import java.util.Arrays;
 
 public class AudioPlayer {
     /*
@@ -9,9 +7,11 @@ public class AudioPlayer {
     Class is called -> User provides a file group of songs which is required to initialize the rest of the class -> user then can invoke other methods with the array
 
    */
-
+    public static songs[] AudioListing;
+    public AudioPlayer(songs[] Audioinit) {
+        AudioListing = Audioinit;
+    }
     /*  TODO
-    *   https://dzone.com/articles/how-retrieveextract-metadata <- use this to extract meta data of file
     *   Make a quarry search
     *   make a class of songs with info for each song
     *   nested classes
@@ -20,30 +20,54 @@ public class AudioPlayer {
     *   String[] songs = {songs songs = new songs(), }
     * */
 
-    //Backend array
-    public static String[] pathnames;
-    //FrontEnd array
-    public static String[] AudioLibrary;
-
-    public void ListInit(File AudioDir){
-        // User must invoke this inorder to initialize the rest of the class
-        pathnames = AudioDir.list();
-        //The two arrays are one for pathname and two for the user to see all the songs
-        AudioLibrary = AudioDir.list();
-
-
-        //creates the audioLibrary for the user without the file extensions at the end
-
-        //Makes sure the array is not empty
-        assert AudioLibrary != null : " File folder is empty ";
-
-        //Removes the file extension for each index in the array
-        for (int ALP = 0; ALP < AudioLibrary.length; ALP++){
-            AudioLibrary[ALP] = FilenameUtils.removeExtension(AudioLibrary[ALP]);
+    public static void ListInit(songs[] audioObj){
+        //Populates this classes array with the objects from Main class
+        for (int x = 0; x < audioObj.length; x++){
+            System.out.println(audioObj[x].sName);
+            System.out.println(audioObj[x].fPath);
+            System.out.println(audioObj[x].aName);
+            System.out.println(audioObj[x].sLength);
         }
-    }
-    public static void ListSongs() {
 
+
+    }
+    public static void ListSongs(String objectChoice) {
+        //Switch statement that will display information accordingly based off of user input
+
+        switch (objectChoice){
+            case "sName":
+                for (int songsList = 0; songsList < AudioListing.length; songsList++){
+                    System.out.println((songsList+1) +". " + AudioListing[songsList].sName);
+                }
+                break;
+            case "fPath":
+                for (int songsList = 0; songsList < AudioListing.length; songsList++){
+                    System.out.println((songsList+1) +". " + AudioListing[songsList].fPath);
+                }
+                break;
+            case "aName":
+                for (int songsList = 0; songsList < AudioListing.length; songsList++){
+                    System.out.println((songsList+1) +". " + AudioListing[songsList].aName);
+                }
+                break;
+
+            case "sLength":
+                for (int songsList = 0; songsList < AudioListing.length; songsList++){
+                    System.out.println((songsList+1) +". " + AudioListing[songsList].sLength);
+                }
+                break;
+
+            case "dump":
+                for (int songsList = 0; songsList < AudioListing.length; songsList++){
+                    System.out.println((songsList+1) +". " + AudioListing[songsList].sName);
+                    System.out.println("      " + AudioListing[songsList].fPath);
+                    System.out.println("      " + AudioListing[songsList].aName);
+                    System.out.println("      " + AudioListing[songsList].sLength);
+                }
+                break;
+            default:
+                System.out.println("Invalid Quarry");
+        }
     }
     public static void playLead() {
 

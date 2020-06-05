@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class PlayMusic extends AudioPlayer{
+public class PlayMusic{
     //global var used to see if music is playing
     public static boolean MusicEnded = false;
 

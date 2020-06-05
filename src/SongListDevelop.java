@@ -1,2 +1,2 @@
-public class SongListDevelop extends AudioPlayer{
+public class SongListDevelop{
 }
