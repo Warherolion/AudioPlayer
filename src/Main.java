@@ -8,7 +8,6 @@ public class Main {
 
 
         songs[] songList= new songs[10];
-
         songList[0] = new songs("Danger Zone", "danger zone.mp3", "Kenny Loggins",  3.33);
         songList[1] = new songs("Do I Wanna Know", "Do I Wanna Know.mp3", "Arctic Monkeys",  4.25);
         songList[2] = new songs("Heartless", "Heartless.wav", "The Weeknd",  4.02);
@@ -22,7 +21,9 @@ public class Main {
 
         AudioPlayer APlayer = new AudioPlayer(songList);
 
-        AudioPlayer.ListSongs("dump");
+        //AudioPlayer.ListSongs("dump");
 
+        String[] search;
+        search = AudioPlayer.search("aName", "Kenny Loggins");
     }
 }

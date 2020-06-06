@@ -13,28 +13,14 @@ public class AudioPlayer {
     }
     /*  TODO
     *   Make a quarry search
-    *   make a class of songs with info for each song
-    *   nested classes
-    *   Create an object of all the songs
     *
-    *   String[] songs = {songs songs = new songs(), }
+    *
+    *
     * */
-
-    public static void ListInit(songs[] audioObj){
-        //Populates this classes array with the objects from Main class
-        for (int x = 0; x < audioObj.length; x++){
-            System.out.println(audioObj[x].sName);
-            System.out.println(audioObj[x].fPath);
-            System.out.println(audioObj[x].aName);
-            System.out.println(audioObj[x].sLength);
-        }
-
-
-    }
     public static void ListSongs(String objectChoice) {
         //Switch statement that will display information accordingly based off of user input
-
         switch (objectChoice){
+            //AudioPlayer.ListSongs("objectChoice"); <- based of user command the relevant information will be displayed
             case "sName":
                 for (int songsList = 0; songsList < AudioListing.length; songsList++){
                     System.out.println((songsList+1) +". " + AudioListing[songsList].sName);
@@ -56,8 +42,8 @@ public class AudioPlayer {
                     System.out.println((songsList+1) +". " + AudioListing[songsList].sLength);
                 }
                 break;
-
             case "dump":
+                //"Dump" shows all the information for every song that is in the array
                 for (int songsList = 0; songsList < AudioListing.length; songsList++){
                     System.out.println((songsList+1) +". " + AudioListing[songsList].sName);
                     System.out.println("      " + AudioListing[songsList].fPath);
@@ -66,11 +52,12 @@ public class AudioPlayer {
                 }
                 break;
             default:
+                //The method requires a String so runtime errors wont happen but in case a
                 System.out.println("Invalid Quarry");
         }
     }
     public static void playLead() {
-
+        //This method is used to autoplay playlists with arguments like looped, shuffled etc
     }
     public static void playListLead() {
 
@@ -89,5 +76,17 @@ public class AudioPlayer {
     }
     public static void PlayList() {
 
+    }
+    public static String[] search(String SearchCategory , String Quarry){
+        switch (SearchCategory) {
+            case aName:
+                for (int songSearch = 0; songSearch < AudioListing.length; songSearch++){
+                    if (AudioListing[songSearch].aName.equals(Quarry)){
+
+                    }
+                }
+        }
+
+        return new String[5];
     }
 }
