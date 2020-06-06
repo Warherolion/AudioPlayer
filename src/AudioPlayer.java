@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 
 public class AudioPlayer {
     /*
@@ -78,8 +79,10 @@ public class AudioPlayer {
 
     }
     public static String[] search(String SearchCategory , String Quarry){
+       String[] SearchResult;
+
         switch (SearchCategory) {
-            case aName:
+            case "aName":
                 for (int songSearch = 0; songSearch < AudioListing.length; songSearch++){
                     if (AudioListing[songSearch].aName.equals(Quarry)){
 
