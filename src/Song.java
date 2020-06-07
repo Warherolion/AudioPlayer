@@ -1,10 +1,10 @@
-public class songs {
+public class Song {
     String sName;
     String fPath;
     String aName;
     double sLength;
 
-    public songs(String songName,
+    public Song(String songName,
                  String filePath,
                  String Artist,
                  double songLength) {

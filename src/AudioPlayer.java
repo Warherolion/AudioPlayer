@@ -1,6 +1,7 @@
-import java.util.Arrays;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
-
+@SuppressWarnings("unused")
 public class AudioPlayer {
     /*
     Process:
@@ -8,12 +9,12 @@ public class AudioPlayer {
     Class is called -> User provides a file group of songs which is required to initialize the rest of the class -> user then can invoke other methods with the array
 
    */
-    public static songs[] AudioListing;
-    public AudioPlayer(songs[] Audioinit) {
+    public static Song[] AudioListing;
+    public AudioPlayer(Song[] Audioinit) {
         AudioListing = Audioinit;
     }
     /*  TODO
-    *   Make a quarry search
+    *
     *
     *
     *
@@ -78,18 +79,36 @@ public class AudioPlayer {
     public static void PlayList() {
 
     }
-    public static String[] search(String SearchCategory , String Quarry){
-       String[] SearchResult;
+    public static Song[] search(String SearchCategory , String Quarry) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+        /*
+        * The purpose of the method is to allow user to search the "Song" array of objects inorder to find
+        * related values of the given quarry. The use of a list allows for a non linear search method meaning
+        * array memory initialization is not required. Though inorder to improve compatibility the list is converted
+        * to an array as the return value.
+        * Return:
+        * The method searches the available object array for the search category ex. artist and places the entire method
+        * in the list meaning the end user can print any aspect of the returned list and wouldn't need to call the object again
+        */
 
-        switch (SearchCategory) {
-            case "aName":
-                for (int songSearch = 0; songSearch < AudioListing.length; songSearch++){
-                    if (AudioListing[songSearch].aName.equals(Quarry)){
+        //Returned array value
+        Song[] ReturnedResult = new Song[0];
+        // Method only list
+        List<Song> SearchResult = new ArrayList<>();
 
-                    }
-                }
+
+        for (Song song : AudioListing) {
+            //Using the field class takes the search category from the method and find its in the song class
+            Field getSearchCategory = Song.class.getDeclaredField(SearchCategory);
+            //converts the SearchCategory to string from the song class
+            String fieldValue = (String) getSearchCategory.get(song);
+            if (fieldValue.equals(Quarry)) {
+                SearchResult.add(song);
+            }
         }
 
-        return new String[5];
+        // Conversion of list to array for ease of use
+        ReturnedResult = SearchResult.toArray(ReturnedResult);
+
+        return ReturnedResult;
     }
 }
