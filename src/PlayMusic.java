@@ -1,9 +1,13 @@
+import java.io.File;
 import java.util.Scanner;
-public class PlayMusic{
+import javax.sound.sampled.*;
+public class PlayMusic extends AudioPlayer{
     //global var used to see if music is playing
     public static boolean MusicEnded = false;
 
-
+    public PlayMusic(Song[] Audioinit) {
+        super(Audioinit);
+    }
 
 
     public static void PlayMenu(int UserChoice){
@@ -28,8 +32,8 @@ public class PlayMusic{
         }
     }
 
-    public static void singlePlay(){
-
+    public static void singlePlay(File musicDir){
+        
     }
     public static void repeatedPlay(){
 

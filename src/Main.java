@@ -23,14 +23,7 @@ public class Main {
 
         //AudioPlayer.ListSongs("dump");
 
-        Song[] search;
+        //Song[] search = AudioPlayer.search("aName", "Kenny Loggins");
 
-        search = AudioPlayer.search("aName", "Kenny Loggins");
-
-
-
-        for (Song songs : search) {
-            System.out.println(songs.sLength);
-        }
     }
 }
