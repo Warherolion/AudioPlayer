@@ -1,8 +1,13 @@
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.List;
 @SuppressWarnings("unused")
 public class AudioPlayer {
+
+    public static Hashtable<String, Song[]> playlists = new Hashtable<String, Song[]>();
+
     /*
     Process:
 
@@ -13,6 +18,7 @@ public class AudioPlayer {
     public AudioPlayer(Song[] Audioinit) {
         AudioListing = Audioinit;
     }
+    PlaylistCreate playlistConvert = new PlaylistCreate(playlists);
     /*  TODO
     *   Start working on the other methods
     *
@@ -76,7 +82,15 @@ public class AudioPlayer {
     public static void Play() {
 
     }
-    public static void PlayList() {
+    public static void createPlayList(String playlistName, Song[] inputSongs) {
+        /*
+        * To create a playlist I used hash maps this makes the act of making a playlist rather easy but
+        * for adding songs to the playlist a list is required so once the array of songs is added to the playlist its
+        * sent to Playlists class to become a list this then allows the user to add songs whenever they want
+        * */
+        playlists.put(playlistName, inputSongs);
+
+
 
     }
     public static Song[] search(String SearchCategory , String Quarry) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {

@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.Arrays;
+
 import org.apache.commons.io.FilenameUtils;
 
 //This page is for showing off the feature class it should'nt be used in production code
@@ -24,6 +26,20 @@ public class Main {
         //AudioPlayer.ListSongs("dump");
 
         //Song[] search = AudioPlayer.search("aName", "Kenny Loggins");
+
+
+
+        Song[] rapMusic = {songList[3], songList[5], songList[2], songList[6]};
+        Song[] PopSongs = {songList[1], songList[9], songList[4], songList[0]};
+
+        AudioPlayer.createPlayList("rapMusic", rapMusic);
+        AudioPlayer.createPlayList("PopSongs", PopSongs);
+
+        //System.out.println("Initial Table is: " + Arrays.toString(AudioPlayer.playlists.get("rapMusic")));
+
+        for(int i = 0; i < AudioPlayer.playlists.get("rapMusic").length; i++){
+            System.out.println("Rap songs: " + AudioPlayer.playlists.get("rapMusic")[i].aName);
+        }
 
     }
 }
