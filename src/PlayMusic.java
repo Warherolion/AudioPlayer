@@ -1,52 +1,72 @@
+import java.applet.AudioClip;
 import java.io.File;
 import java.util.Scanner;
 import javax.sound.sampled.*;
-public class PlayMusic extends AudioPlayer{
-    //global var used to see if music is playing
-    public static boolean MusicEnded = false;
+import java.io.File;
+@SuppressWarnings("unused")
 
-    public PlayMusic(Song[] Audioinit) {
-        super(Audioinit);
-    }
+public class PlayMusic{
+    public static boolean MusicPlaying = false;
+    public static Clip audioCLip;
 
-
-    public static void PlayMenu(int UserChoice){
-        Scanner input = new Scanner(System.in);
-        while (!MusicEnded) {
-            System.out.println("Please pick one option");
-            System.out.println("1. Play Song");
-            System.out.println("2. Pause/Play");
-            System.out.println("3. Skip");
-            System.out.println("4. Shuffle");
-            System.out.println("5. Loop");
-            System.out.println("6. Add this song to playlist");
-            System.out.println("7. List song info");
-            System.out.println("8. Close Player");
-            try {
-                UserChoice = input.nextInt();
-                PlayMenu(UserChoice);
-                if (UserChoice == 4) break;
-            } catch (Exception ex) {
-                System.out.println("There was an unexpected error, please try again");
-            }
+    static {
+        try {
+            audioCLip = (Clip) AudioSystem.getLine(new Line.Info(Clip.class));
+        }catch (Exception e) {
+            System.out.println("Unable to create clip please restart program");
         }
     }
 
-    public static void singlePlay(File musicDir){
-        
+
+    public static void singlePlay(Song musicObject, String musicDir){
+        boolean returnPlay = false;
+        String audioObject = musicDir + musicObject.fPath;
+
+        try{
+            DataLine.Info clipDataLine = null;
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(audioObject));
+
+            //Inits the clips and stats playing
+            audioCLip.open(audioInput);
+
+            while (!checkPlay()) {
+                audioCLip.setFramePosition(0);
+                audioCLip.start();
+                audioCLip.drain();
+            }
+
+        }
+        catch (Exception e){
+            System.out.println("Something went wrong please try again later");
+            e.printStackTrace();
+        }
+    }
+
+
+    public static boolean checkPlay(){
+        /*
+        * A line is the data stream of
+        *
+        * */
+        audioCLip.addLineListener(new LineListener() {
+            public void update(LineEvent evt) {
+                if (evt.getType() == LineEvent.Type.STOP) {
+                    //Sets music listener to false allowing new songs to play
+                    MusicPlaying = true;
+                }
+            }
+        });
+        return MusicPlaying;
     }
     public static void repeatedPlay(){
 
     }
 
     //The following methods are locked unless a song is playing
-    public static void Play(){
-
-    }
     public static void skip(){
 
     }
-    public static void Pause(){
+    public static void playPause(){
 
     }
     public static void Shuffle(){

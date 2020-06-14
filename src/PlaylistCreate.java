@@ -14,7 +14,7 @@ public class PlaylistCreate{
         preMadeArray = PlaylistHashMap;
     }
 
-    Set<Song[]> keys = preMadeArray.keySet();
+    //Set<String> keys = preMadeArray.keySet();
 
 
 

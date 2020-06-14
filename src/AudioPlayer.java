@@ -1,3 +1,4 @@
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -5,26 +6,23 @@ import java.util.Hashtable;
 import java.util.List;
 @SuppressWarnings("unused")
 public class AudioPlayer {
+    //PlaylistCreate playlistConvert = new PlaylistCreate(playlists);
+    /*  TODO
+     *   Start working on the other methods
+     *
+     *
+     *
+     * */
 
     public static Hashtable<String, Song[]> playlists = new Hashtable<String, Song[]>();
-
-    /*
-    Process:
-
-    Class is called -> User provides a file group of songs which is required to initialize the rest of the class -> user then can invoke other methods with the array
-
-   */
     public static Song[] AudioListing;
-    public AudioPlayer(Song[] Audioinit) {
+    public static String musicDir;
+
+    public AudioPlayer(Song[] Audioinit, String musicDirectory) {
         AudioListing = Audioinit;
+        musicDir = musicDirectory;
     }
-    PlaylistCreate playlistConvert = new PlaylistCreate(playlists);
-    /*  TODO
-    *   Start working on the other methods
-    *
-    *
-    *
-    * */
+
     public static void ListSongs(String objectChoice) {
         //Switch statement that will display information accordingly based off of user input
         switch (objectChoice){
@@ -64,21 +62,18 @@ public class AudioPlayer {
                 System.out.println("Invalid Quarry");
         }
     }
+
+
     public static void playLead() {
-        //This method is used to autoplay playlists with arguments like looped, shuffled etc
+        PlayMusic.singlePlay(AudioListing[6],musicDir);
     }
     public static void playListLead() {
-
-    }
-    public static void AudioGrab() {
 
     }
     public static void SinglePLayClip(String Filename, boolean Looped) {
 
     }
-    public static void ListPop() {
 
-    }
     public static void Play() {
 
     }
