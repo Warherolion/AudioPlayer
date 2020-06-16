@@ -31,21 +31,21 @@ public class Main {
         //Song[] search = AudioPlayer.search("aName", "Kenny Loggins");
 
 
-        /*
+
         Song[] rapMusic = {songList[3], songList[5], songList[2], songList[6]};
         Song[] PopSongs = {songList[1], songList[9], songList[4], songList[0]};
 
-        AudioPlayer.createPlayList("rapMusic", rapMusic);
-        AudioPlayer.createPlayList("PopSongs", PopSongs);
+        Playlist.createPlaylist("RapMusic", rapMusic);
+        Playlist.createPlaylist("PopSongs", PopSongs);
+        /*
+        Playlist.addPlaylistSong("RapMusic",songList[4]);
 
-        //System.out.println("Initial Table is: " + Arrays.toString(AudioPlayer.playlists.get("rapMusic")));
+        Playlist.deletePlaylistSong("RapMusic", rapMusic[1]);
 
-        for(int i = 0; i < AudioPlayer.playlists.get("rapMusic").length; i++){
-            System.out.println("Rap songs: " + AudioPlayer.playlists.get("rapMusic")[i].aName);
+        for(int i = 0; i < Playlist.getPlaylist("RapMusic").length; i++){
+            System.out.println("Rap songs: " + Playlist.getPlaylist("RapMusic")[i].aName);
         }
         */
-
-        AudioPlayer.playLead();
-
+        //AudioPlayer.playLead();
     }
 }

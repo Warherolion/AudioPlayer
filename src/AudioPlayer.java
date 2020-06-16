@@ -1,26 +1,37 @@
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
+
+
 @SuppressWarnings("unused")
 public class AudioPlayer {
     //PlaylistCreate playlistConvert = new PlaylistCreate(playlists);
+
+    Playlist playlistArray = new Playlist();
+
     /*  TODO
-     *   Start working on the other methods
-     *
-     *
-     *
+     *   Create pause and play functions
+     *   Allow playlist to be played in succession
+     *   Finish PlayLead function
+     *   Finish audioPlay functions
      * */
 
-    public static Hashtable<String, Song[]> playlists = new Hashtable<String, Song[]>();
-    public static Song[] AudioListing;
-    public static String musicDir;
+    public static Hashtable<String, List<Song>> playlists = new Hashtable<String, List<Song>>();
 
     public AudioPlayer(Song[] Audioinit, String musicDirectory) {
         AudioListing = Audioinit;
         musicDir = musicDirectory;
+    }
+
+    public static Song[] AudioListing;
+    public static String musicDir;
+
+    public static void playLead() {
+
+
+        
     }
 
     public static void ListSongs(String objectChoice) {
@@ -62,32 +73,6 @@ public class AudioPlayer {
                 System.out.println("Invalid Quarry");
         }
     }
-
-
-    public static void playLead() {
-        PlayMusic.singlePlay(AudioListing[6],musicDir);
-    }
-    public static void playListLead() {
-
-    }
-    public static void SinglePLayClip(String Filename, boolean Looped) {
-
-    }
-
-    public static void Play() {
-
-    }
-    public static void createPlayList(String playlistName, Song[] inputSongs) {
-        /*
-        * To create a playlist I used hash maps this makes the act of making a playlist rather easy but
-        * for adding songs to the playlist a list is required so once the array of songs is added to the playlist its
-        * sent to Playlists class to become a list this then allows the user to add songs whenever they want
-        * */
-        playlists.put(playlistName, inputSongs);
-
-
-
-    }
     public static Song[] search(String SearchCategory , String Quarry) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         /*
         * The purpose of the method is to allow user to search the "Song" array of objects inorder to find
@@ -98,12 +83,9 @@ public class AudioPlayer {
         * The method searches the available object array for the search category ex. artist and places the entire method
         * in the list meaning the end user can print any aspect of the returned list and wouldn't need to call the object again
         */
-
-        //Returned array value
         Song[] ReturnedResult = new Song[0];
         // Method only list
         List<Song> SearchResult = new ArrayList<>();
-
 
         for (Song song : AudioListing) {
             //Using the field class takes the search category from the method and find its in the song class
@@ -114,10 +96,7 @@ public class AudioPlayer {
                 SearchResult.add(song);
             }
         }
-
-        // Conversion of list to array for ease of use
         ReturnedResult = SearchResult.toArray(ReturnedResult);
-
         return ReturnedResult;
     }
 }

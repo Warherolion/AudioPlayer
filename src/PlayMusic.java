@@ -1,12 +1,15 @@
-import java.applet.AudioClip;
 import java.io.File;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 import javax.sound.sampled.*;
-import java.io.File;
-@SuppressWarnings("unused")
+
+@SuppressWarnings({"unused", ""})
 
 public class PlayMusic{
-    public static boolean MusicPlaying = false;
+    public static boolean MusicPlaying = true;
     public static Clip audioCLip;
 
     static {
@@ -18,21 +21,25 @@ public class PlayMusic{
     }
 
 
-    public static void singlePlay(Song musicObject, String musicDir){
+    public static void singlePlay(Song musicObject, String musicDir, boolean loopedControl){
         boolean returnPlay = false;
         String audioObject = musicDir + musicObject.fPath;
 
         try{
             DataLine.Info clipDataLine = null;
+
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(new File(audioObject));
 
             //Inits the clips and stats playing
             audioCLip.open(audioInput);
 
-            while (!checkPlay()) {
+            while (checkPlay()) {
                 audioCLip.setFramePosition(0);
                 audioCLip.start();
                 audioCLip.drain();
+                if (loopedControl){
+                    audioCLip.loop(audioCLip.LOOP_CONTINUOUSLY);
+                }
             }
 
         }
@@ -45,40 +52,52 @@ public class PlayMusic{
 
     public static boolean checkPlay(){
         /*
-        * A line is the data stream of
-        *
-        * */
+        * A line is the data stream of the music and the addition of a line listener allows for monitoring of
+        * the status of songs this can be used to pause, play and check is music is playing so commands dont overlap
+        */
         audioCLip.addLineListener(new LineListener() {
             public void update(LineEvent evt) {
-                if (evt.getType() == LineEvent.Type.STOP) {
-                    //Sets music listener to false allowing new songs to play
-                    MusicPlaying = true;
-                }
+                //Sets music listener to false allowing new songs to play
+                MusicPlaying = evt.getType() != LineEvent.Type.STOP;
             }
         });
         return MusicPlaying;
     }
-    public static void repeatedPlay(){
+    public static void playlistPlay(String playlistName, boolean loopControl, boolean shuffleControl){
 
     }
 
     //The following methods are locked unless a song is playing
+
+    public static void playPause(boolean play){
+        long musicTime;
+        if (!play && MusicPlaying){
+            //Pauses the active song
+            musicTime = audioCLip.getMicrosecondPosition();
+            audioCLip.stop();
+        }else if (play && !MusicPlaying){
+            audioCLip.start();
+        }
+    }
     public static void skip(){
 
     }
-    public static void playPause(){
+    public static Song[] Shuffle(String playlistName){
 
-    }
-    public static void Shuffle(){
+        List<Song> shuffledMusicList = Arrays.asList(Playlist.getPlaylist(playlistName));
 
-    }
-    public static void Loop(){
+        Collections.shuffle(shuffledMusicList);
 
-    }
-    public static void AddPlaylistSong(){
+        Object[] objectivePlaylist = shuffledMusicList.toArray();
 
+        Song[]  convertedPlaylists = new Song[objectivePlaylist.length];
+
+        for (int x = 0; x < objectivePlaylist.length; x++){
+            convertedPlaylists[x] = (Song) objectivePlaylist[x];
+        }
+        return convertedPlaylists;
     }
-    public static void ListInfo(){
+    public static void Loop(String playlistName){
 
     }
 }
