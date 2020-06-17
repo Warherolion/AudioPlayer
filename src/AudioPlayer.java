@@ -1,4 +1,3 @@
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -7,16 +6,8 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class AudioPlayer {
-    //PlaylistCreate playlistConvert = new PlaylistCreate(playlists);
 
     Playlist playlistArray = new Playlist();
-
-    /*  TODO
-     *   Create pause and play functions
-     *   Allow playlist to be played in succession
-     *   Finish PlayLead function
-     *   Finish audioPlay functions
-     * */
 
     public static Hashtable<String, List<Song>> playlists = new Hashtable<String, List<Song>>();
 
@@ -27,12 +18,6 @@ public class AudioPlayer {
 
     public static Song[] AudioListing;
     public static String musicDir;
-
-    public static void playLead() {
-
-
-
-    }
 
     public static void ListSongs(String objectChoice) {
         //Switch statement that will display information accordingly based off of user input

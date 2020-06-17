@@ -34,8 +34,11 @@ public class Playlist{
    }
 
     public static Song[] getPlaylist(String playlistName){
-        Song[] returnedPlaylist = null;
+        /*
+        * grabs the playlist from the
+        */
 
+        Song[] returnedPlaylist = null;
 
         if (Playlists.containsKey(playlistName)) {
             returnedPlaylist = Playlists.get(playlistName);
@@ -78,7 +81,10 @@ public class Playlist{
 
     }
     public static void renamePlaylist(String playlistOldName, String playlistNewName) {
-
+        /*
+        * Takes the key and deletes the map to it, then takes the new key name and uses the old value in the hashMap and
+        * routes it to the new key name creating a new index in the hashMap
+        */
         if (Playlists.containsKey(playlistOldName)){
             Song[] returnedValue = Playlists.remove(playlistOldName);
             Playlists.put(playlistNewName, returnedValue);
