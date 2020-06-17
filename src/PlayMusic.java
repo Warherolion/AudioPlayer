@@ -63,8 +63,17 @@ public class PlayMusic{
         });
         return MusicPlaying;
     }
-    public static void playlistPlay(String playlistName, boolean loopControl, boolean shuffleControl){
+    public static void playlistPlay(String playlistName, String musicDir, boolean loopControl, boolean shuffleControl){
 
+
+            for(int playlistCheck = 0; playlistCheck < Playlist.getPlaylist(playlistName).length; playlistCheck++){
+                if (shuffleControl){
+                    Song[] shuffle = Shuffle(playlistName);
+                    singlePlay(shuffle[playlistCheck], musicDir, false);
+
+                }
+
+            }
     }
 
     //The following methods are locked unless a song is playing
