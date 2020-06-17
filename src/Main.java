@@ -37,6 +37,11 @@ public class Main {
 
         Playlist.createPlaylist("RapMusic", rapMusic);
         Playlist.createPlaylist("PopSongs", PopSongs);
+
+
+        //PlayMusic.singlePlay(songList[6],"C:\\Users\\ranvi\\Desktop\\Grade 12 School Work\\CompSci\\CompSci_MusicStreamingApp\\src\\Music", false);
+
+
         /*
         Playlist.addPlaylistSong("RapMusic",songList[4]);
 
